@@ -1,0 +1,182 @@
+/********************************************************************************************
+ Ejemplo 1:  
+
+  Layout : LinearLayout  Orientación horizontal (android:orientation="0"   o "horizontal")
+  View   : TextView. Uso de wrap_content 
+*********************************************************************************************/
+
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="0"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background ="@android:color/darker_gray">
+
+    <TextView
+        android:text="Feliz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"  />
+
+    <TextView
+        android:text="Navidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"  />
+
+</LinearLayout>
+
+
+/********************************************************************************************
+ Ejemplo 2:  
+
+  Layout : LinearLayout  Orientación vertical (android:orientation="1"   o "vertical")
+  View   : TextView. Uso de wrap_content y match_parent
+*********************************************************************************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="1"
+    android:layout_width="300dp"
+    android:layout_height="500dp"
+    android:background ="@android:color/darker_gray">
+
+    <TextView
+        android:text="Feliz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:background="#F44336"/>
+
+    <TextView
+        android:text="Navidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:background="#03A9F4"/>
+
+</LinearLayout>
+
+
+/********************************************************************************************
+ Ejemplo 3:  
+
+  Layout : LinearLayout  Orientación vertical (android:orientation="1"   o "vertical")
+  View   : TextView . Uso de match_parent y wrap_content
+*********************************************************************************************/
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background ="@android:color/darker_gray">
+
+
+    <TextView
+        android:text="Feliz"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:background="#F44336"/>
+
+    <TextView
+        android:text="Navidad"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="24sp"
+        android:background="#03A9F4"/>
+
+</LinearLayout>
+
+
+
+/********************************************************************************************
+ Ejemplo 4:  
+
+  Layout : LinearLayout  Orientación vertical (android:orientation="1"   o "vertical")
+  View   : TextView . Uso de match_parent y wrap_content. Igual espacio para las vistas: 
+           layout_height en cero  y el layout_weight  en 1 para cada hijo
+*********************************************************************************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background ="@android:color/darker_gray">
+
+
+    <TextView
+        android:text="Feliz"
+        android:layout_width="wrap_content"
+        android:layout_height="0"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#F44336"
+        
+        />
+
+    <TextView
+        android:text="Navidad"
+        android:layout_width="wrap_content"
+        android:layout_height="0"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#03A9F4"/>
+
+</LinearLayout>
+
+
+/********************************************************************************************
+ Ejemplo 4:  
+
+  Layout : LinearLayout  Orientación horizontal (android:orientation="0"   o "horizontal")
+  View   : TextView . Uso de match_parent y wrap_content. Igual espacio para las vistas: 
+           layout_width en cero  y el layout_weight  en 1 para cada hijo
+*********************************************************************************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background ="@android:color/darker_gray">
+
+
+    <TextView
+        android:text="Feliz"
+        android:layout_width="0"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#F44336"
+
+        />
+
+    <TextView
+        android:text="Navidad"
+        android:layout_width="0"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#03A9F4"/>
+
+    <TextView
+        android:text="2022"
+        android:layout_width="0"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:textSize="24sp"
+        android:background="#C6FF00"/>
+
+</LinearLayout>
+
