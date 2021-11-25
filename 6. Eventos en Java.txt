@@ -1,0 +1,186 @@
+/************************************************
+ Ejemplo 1.   Comer Galletas
+
+ Escuchas en el xml
+************************************************/
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B388FF"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/id_imagen"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/before_cookie" />
+
+    <TextView
+        android:id="@+id/id_mensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/before"
+        android:textColor="@android:color/white"
+        android:textSize="34sp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/boton_comer"
+        android:onClick="comerGalleta" />
+
+</LinearLayout>
+
+/*****************************************
+ Ejemplo 1 : Comer Galletas
+
+ MainActivity : Logica . Escuchas en xml
+*******************************************/
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void comerGalleta(View view) {
+        // Find a reference to the ImageView in the layout. Change the image.
+        ImageView imageView = (ImageView) findViewById(R.id.id_imagen);
+        imageView.setImageResource(R.drawable.after_cookie);
+
+        // Find a reference to the TextView in the layout. Change the text.
+        TextView textView = (TextView) findViewById(R.id.id_mensaje);
+        textView.setText("Estoy Lleno umm");
+    }
+}
+
+
+/************************************************
+ Ejemplo 2.   Comer Galletas
+
+ Escuchas en codigo java
+************************************************/
+
+----------------------------------------------
+activity_main.xml
+---------------------------------------------
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B388FF"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/id_imagen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/altura_imagen"
+        android:layout_weight="1"
+        android:scaleType="centerCrop"
+        android:src="@drawable/before_cookie" />
+
+    <TextView
+        android:id="@+id/id_mensaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margen_izquierda_mensaje"
+        android:layout_marginRight="@dimen/margen_derecha_mensaje"
+        android:layout_marginTop="16dp"
+        android:text="@string/before"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/tamano_mensaje" />
+
+    <Button
+        android:id="@+id/id_boton_comer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/boton_comer" />
+
+</LinearLayout>
+
+
+-------------------------------------
+MainActivity.java
+-------------------------------------
+
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Button botonComer;
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        botonComer = (Button) findViewById(R.id.id_boton_comer);
+
+        botonComer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ImageView imagen_galletas;
+                TextView mensaje;
+
+                // Encuentra una referencia al ImageView id_imagen
+                imagen_galletas = (ImageView) findViewById(R.id.id_imagen);
+                imagen_galletas.setImageResource(R.drawable.after_cookie);
+
+                // Encuentra una referencia al TextView id_mensaje
+                mensaje = (TextView) findViewById(R.id.id_mensaje);
+                mensaje.setText(R.string.despues);
+            }
+        });
+
+    }
+
+}
+
+------------------------------------------------------------------------
+String.xml
+-----------------------------------------------------------------------
+
+
+<resources>
+    <string name="app_name">Galletas deliciosas!</string>
+    <string name="before"> Tengo Hambre </string>
+    <string name="boton_comer">Comer Galleta Hum! </string>
+    <string name="despues">Estoy lleno hum!</string>
+</resources>
+
+
+----------------------------------------------------------------------
+dimens.xml
+-----------------------------------------------------------------------
+<resources>
+    <dimen name="altura_imagen">0dp</dimen>
+    <dimen name="margen_izquierda_mensaje">16dp</dimen>
+    <dimen name="margen_derecha_mensaje">16dp</dimen>
+    <dimen name="tamano_mensaje">34sp</dimen>
+</resources>
