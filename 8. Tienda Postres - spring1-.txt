@@ -1,0 +1,278 @@
+/**********************************************************************************************************
+   ARCHIVOS XML
+***********************************************************************************************************/
+
+
+
+/******************************
+   Archivo:     
+     activity_main.xml
+
+   Tema:
+      Inicio de la aplicacion
+********************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/fondo"
+        android:scaleType="center"/>
+
+</LinearLayout>
+
+/**************************************
+   Archivo:     
+     activity_productos.xml
+
+   Tema:
+     Productos de la tienda de postres
+****************************************/
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/id_titulo_productos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="@dimen/dim_margin_titulo_1"
+        android:text="@string/titulo_productos"
+        android:textSize="@dimen/dim_tit_productos"
+        android:textStyle="bold|italic" />
+
+    <TableLayout
+        android:layout_below="@+id/id_titulo_productos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"       
+        android:layout_marginLeft="@dimen/dim_margen_tabla"
+        android:layout_marginRight="@dimen/dim_margen_tabla"
+        android:layout_marginBottom="@dimen/dim_margen_b_tabla">
+
+        <TableRow>
+
+            <ImageView
+                android:padding="5dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/reno" />
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/dime_margen_text_row"
+                android:text="@string/texto_reno"
+                android:textStyle="bold|italic" />
+
+        </TableRow>
+
+        <TableRow>
+
+            <ImageView
+                android:padding="5dp"
+                android:src="@drawable/mono" />
+
+            <TextView
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/dime_margen_text_row"
+                android:text="@string/texto_flor"
+                android:textStyle="bold|italic" />
+
+        </TableRow>
+
+    </TableLayout>
+</RelativeLayout>
+
+
+/***********************************************************
+   Archivo:     
+     activity_servicios.xml
+
+   Tema:
+     Servicios de la tienda de postres
+
+   Nota:
+      No implementado. Por defecto el codigo de androide
+*************************************************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Servicios">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+/***********************************************************
+   Archivo:     
+     activity_sucursales.xml
+
+   Tema:
+     Servicios de la tienda de postres
+
+   Nota:
+      No implementado. Por defecto el codigo de androide
+*************************************************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sucursales">
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+/**********************************************************************************************************
+   ARCHIVOS DE CONFIGURACION XML
+***********************************************************************************************************/
+
+
+/********** strings.xml  ****************/
+
+<resources>
+    <string name="app_name">Kios Dessert </string>
+    <string name="texto_item_1">Productos</string>
+    <string name="texto_item_2">Servicios</string>
+    <string name="id_item_3">Sucursales</string>
+    <string name="titulo_productos">Nuestros Postres</string>
+    <string name="texto_reno"> Postre Renito</string>
+    <string name="texto_flor"> Postre Flor</string>
+</resources>
+
+
+/********** dimens.xml  ****************/
+
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dim_margin_titulo_1">30dp</dimen>
+    <dimen name="dim_tit_productos">36sp</dimen>
+    <dimen name="dim_margen_tabla">40dp</dimen>
+    <dimen name="dim_margen_b_tabla">300dp</dimen>
+    <dimen name="dime_margen_text_row">20dp</dimen>
+</resources>
+
+
+/**********************************************************************************************************
+   ARCHIVOS  JAVA
+***********************************************************************************************************/
+
+/********** MainActivity.java ****************/
+
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_opciones,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id_item;
+        Intent intentProductos,intentServicios,intentSucursales;
+
+        switch(item.getItemId())
+        {
+            /* Productos */
+            case R.id.id_item_1:
+
+                intentProductos= new Intent(this, Productos.class);
+                startActivity(intentProductos);
+                break;
+
+            /* Servicios */
+            case R.id.id_item_2:
+
+                intentServicios = new Intent(this, Servicios.class);
+                startActivity(intentServicios);
+                break;
+
+            /* Sucursales */
+            case R.id.id_item_3:
+                intentSucursales = new Intent(this, Sucursales.class);
+                startActivity(intentSucursales);
+                break;
+
+
+
+
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
+
+
+
+/********** Productos.java  ****************/
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Productos extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_productos);
+    }
+}
+
+
+/********** Servicios.java  ****************/
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Servicios extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_servicios);
+    }
+}
+
+/********** Sucursales.java  ****************/
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class Sucursales extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sucursales);
+    }
+}
