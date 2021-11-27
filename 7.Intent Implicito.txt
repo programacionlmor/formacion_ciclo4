@@ -1,0 +1,185 @@
+/****************************************************
+
+ Archivo:
+   MainActivity.java
+
+ Tema:
+   Ejemplo de intent ( Correo electrónico)
+   Escuha en el XML
+
+*****************************************************/
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity {
+
+    private final int PRECIO = 5;
+    private int cantidad = 1;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void incrementarCantidad(View view) {
+        cantidad = cantidad + 1;
+        mostrarCantidad(cantidad);
+    }
+
+    public void decrementarCantidad(View view) {
+        cantidad = cantidad - 1;
+        mostrarCantidad(cantidad);
+    }
+
+    public void realizarPedido(View view){
+        Intent enviarCorreo;
+        String asunto,cuerpoCorreo,para;
+
+        // Mostrar el precio
+        mostrarPrecio(PRECIO * cantidad);
+
+        // Enviar correo del pedido
+
+        para ="pepito.perez@gmail.com";
+        asunto = "Orden de galletas";
+        cuerpoCorreo ="Las " + cantidad +" galletas de chocolate van en camino." +"El total de su orden es " + PRECIO*cantidad;
+
+        enviarCorreo = new Intent(getIntent().ACTION_SENDTO);
+        enviarCorreo.setData(Uri.parse("mailto:"));
+
+        enviarCorreo.putExtra(Intent.EXTRA_SUBJECT,asunto);
+        enviarCorreo.putExtra(Intent.EXTRA_TEXT,cuerpoCorreo);
+        enviarCorreo.putExtra(Intent.ACTION_SENDTO,para);
+        if (enviarCorreo.resolveActivity(getPackageManager())!= null){
+            startActivity(enviarCorreo);
+        }
+
+
+    }
+
+    public void mostrarCantidad(int valor) {
+        TextView valorCantidad = (TextView) findViewById(R.id.id_valor_cantidad);
+        valorCantidad.setText(String.valueOf(valor));
+    }
+
+    public void mostrarPrecio(int precio) {
+        TextView valorPrecio = (TextView) findViewById(R.id.id_valor_precio);
+        valorPrecio.setText(NumberFormat.getCurrencyInstance(Locale.CHINA).format(precio));
+    }
+
+}
+
+
+/********************************************************************
+ Archivo:
+
+   activity_main.xml
+
+ Tema: 
+   Ejemplo de intent ( Correo electrónico).
+   Escuha en el XML
+
+********************************************************************/
+
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_margin="50dp"
+    android:layout_gravity="center_vertical"
+    android:background="#00b2cc">
+
+    <TextView
+        android:id="@+id/id_titulo_cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:text="Cantidad"
+        android:textAllCaps="true"
+        android:textColor="#000000" />
+
+
+    <TextView
+        android:id="@+id/id_valor_cantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_titulo_cantidad"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="0" />
+
+
+    <Button
+
+        android:id="@+id/id_boton_menos"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginTop="40dp"
+        android:layout_toLeftOf="@id/id_valor_cantidad"
+        android:onClick="decrementarCantidad"
+        android:text="-"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/id_titulo_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_valor_cantidad"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="PRECIO"
+        android:textColor="#000000" />
+
+    <Button
+
+        android:id="@+id/id_boton_mas"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="incrementarCantidad"
+        android:layout_toRightOf="@id/id_valor_cantidad"
+        android:text="+"
+        android:textColor="#000000"/>
+
+    <TextView
+        android:id="@+id/id_valor_precio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_titulo_precio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="1" />
+
+
+    <Button
+        android:id="@+id/btn_realizar_pedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/id_valor_precio"
+        android:layout_centerHorizontal="true"
+        android:onClick="realizarPedido"
+        android:text="Realizar Pedido"
+        android:textColor="#000000" />
+
+
+</RelativeLayout>
